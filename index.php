@@ -1,4 +1,16 @@
-<?
+<?php
+    $hour = (int)strftime('%H');
+    $welcome = '';
+    if($hour > 0 and $hour < 6)
+        $welcome = 'Доброй ночи';
+    elseif($hour >= 6 and $hour < 12)
+        $welcome = 'Доброе Утро';
+    elseif($hour >= 12 and $hour < 18)
+        $welcome = 'Добрый День';
+    elseif($hour >= 18 and $hour < 23)
+        $welcome = 'Добрый Вечер';
+//Обявление констант
+define('COPYRIGHT','True-Studio');
 	 //Выбираем дату
 	setlocale(LC_ALL, "russian");
 	$day = strftime('%d');
@@ -26,7 +38,7 @@ require ('gettoday.lib');
 
 		<div id="content">
 			<!-- Заголовок -->
-			<h1>Добро пожаловать cюда!</h1>
+			<h1><?=$welcome?>,Путник</h1>
 			<!-- Заголовок -->
 			<!-- Область основного контента -->
 			<blockquote>
@@ -53,12 +65,28 @@ require ('gettoday.lib');
 			<!-- Навигация -->
 			<h2>Навигация по сайту</h2>
 			<!-- Меню -->
+			<?php
+                $leftMenu = array(
+                
+                    array('link' => 'Домой', 'href' => 'index.php'),
+                    array('link' => 'О нас', 'href' => 'about.php'),
+                    array('link' => 'Контакты', 'href' => 'contact.php'),
+                    array('link' => 'Таблица', 'href' => 'table.php'),
+                    array('link' => 'Калькулятор', 'href' => 'calc.php'),
+            );
+                    
+            ?>
 			<ul>
-				<li><a href='index.php'>Домой</a></li>
-				<li><a href='about.php'>О нас</a></li>
-				<li><a href='contact.php'>Контакты</a></li>
-				<li><a href='table.php'>Таблица умножения</a></li>
-				<li><a href='calc.php'>Калькулятор</a></li>
+				<li><a href='<?=$leftMenu[0]['href']?>'>
+				  <?=$leftMenu[0]['link']?></a></li>
+				<li><a href='<?=$leftMenu[1]['href']?>'>
+				  <?=$leftMenu[1]['link']?></a></li>
+				<li><a href='<?=$leftMenu[2]['href']?>'>
+				<?=$leftMenu[2]['link']?></a></li>
+				<li><a href='<?=$leftMenu[3]['href']?>'>
+				<?=$leftMenu[0]['link']?></a></li>
+				<li><a href='<?=$leftMenu[4]['href']?>'>
+				<?=$leftMenu[0]['link']?></a></li>
 			</ul>
 			<!-- Меню -->
 			<!-- Навигация -->
